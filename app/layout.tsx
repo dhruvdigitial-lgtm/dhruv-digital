@@ -26,11 +26,15 @@ subsets:["latin"],
 
 
 
+
+
 export const metadata: Metadata = {
+
 
 
 title:
 "Dhruv Digital & Stationary | Printing, Resume & Online Services",
+
 
 
 
@@ -39,29 +43,61 @@ description:
 
 
 
+
+
+
+
 keywords:[
+
 
 "Dhruv Digital",
 
+
 "Dhruv Digital and Stationary",
+
 
 "Printing Services",
 
+
 "Resume Design",
+
 
 "Online Services",
 
+
 "PAN Card Services",
+
 
 "Voter ID Services",
 
+
 "Spiral Binding",
+
 
 "Stationery",
 
+
 "Certificate Design"
 
+
 ],
+
+
+
+
+
+
+
+verification: {
+
+
+google:
+"gNizGuw7mqRrrVnVC9M-08ERRpY1DuTaR5No4Fn5aQE",
+
+
+},
+
+
 
 
 
@@ -70,15 +106,21 @@ keywords:[
 openGraph:{
 
 
+
 title:
 "Dhruv Digital & Stationary",
+
+
 
 
 description:
 "One Stop Solution for Printing, Digital Services, Resume, Government Services & Custom Designs.",
 
 
+
+
 type:"website",
+
 
 
 },
@@ -86,16 +128,24 @@ type:"website",
 
 
 
+
+
+
 icons:{
+
 
 
 icon:"/logo.png"
 
 
+
 }
 
 
+
 };
+
+
 
 
 
@@ -117,10 +167,14 @@ themeColor:"#06b6d4"
 
 
 
+
+
 export default function RootLayout({
 
 
+
 children,
+
 
 
 }: Readonly<{
@@ -130,37 +184,49 @@ children: React.ReactNode;
 }>) {
 
 
+
 return (
+
 
 
 <html
 
 
+
 lang="en"
+
 
 
 data-scroll-behavior="smooth"
 
 
+
 className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+
 
 
 >
 
 
+
 <body className="min-h-full flex flex-col">
+
 
 
 {children}
 
 
+
 </body>
+
 
 
 </html>
 
 
+
 );
+
 
 
 }
