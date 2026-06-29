@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
 return {
 
 
-rules:{
+rules: {
 
 
 userAgent:"*",
@@ -19,9 +19,7 @@ allow:"/",
 },
 
 
-
 sitemap:"https://dhruvdigital.vercel.app/sitemap.xml"
-
 
 
 };
