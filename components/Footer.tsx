@@ -1,36 +1,313 @@
-export default function Footer() {
-  return (
-    <footer className="bg-gray-950 text-gray-400 py-10 border-t border-gray-800">
-      <div className="max-w-6xl mx-auto px-6">
+import Link from "next/link";
+import {
+  MessageCircle,
+  Phone,
+  Mail
+} from "lucide-react";
 
-        <div className="text-center">
-          
-          {/* Brand Name */}
-          <h2 className="text-white text-2xl font-bold">
-            Dhruv Digital & Stationary
-          </h2>
 
-          {/* Tagline */}
-          <p className="mt-2 text-sm text-gray-400">
-            Modern digital & printing solutions for your business needs
-          </p>
 
-          {/* Quick Links */}
-          <div className="flex justify-center gap-6 mt-5 text-sm">
-            <a href="#home" className="hover:text-cyan-400">Home</a>
-            <a href="#about" className="hover:text-cyan-400">About</a>
-            <a href="#services" className="hover:text-cyan-400">Services</a>
-            <a href="#contact" className="hover:text-cyan-400">Contact</a>
-          </div>
+export default function Footer(){
 
-          {/* Copyright */}
-          <p className="mt-6 text-xs text-gray-600">
-            © {new Date().getFullYear()} Dhruv Digital & Stationary. All rights reserved.
-          </p>
 
-        </div>
+return(
 
-      </div>
-    </footer>
-  );
+
+<footer className="bg-black border-t border-gray-800 text-white">
+
+
+
+<div className="max-w-7xl mx-auto px-5 py-12">
+
+
+
+
+
+<div className="grid md:grid-cols-4 gap-10">
+
+
+
+
+
+
+
+{/* Brand */}
+
+
+<div>
+
+
+<h2 className="text-2xl font-bold text-cyan-400">
+
+Dhruv Digital & Stationary
+
+</h2>
+
+
+
+<p className="text-gray-400 mt-4 text-sm">
+
+Your one stop solution for Printing,
+Digital Services, Government Assistance
+and Custom Designs.
+
+</p>
+
+
+
+
+<a
+
+href="https://wa.me/919485665412"
+
+target="_blank"
+
+className="inline-flex items-center gap-2 mt-5 bg-green-600 px-5 py-3 rounded-xl"
+
+>
+
+<MessageCircle size={18}/>
+
+WhatsApp
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* Quick Links */}
+
+
+<div>
+
+
+<h3 className="text-lg font-bold text-cyan-400">
+
+Quick Links
+
+</h3>
+
+
+
+
+<div className="space-y-3 mt-4 text-gray-400">
+
+
+
+<Link href="/" className="block hover:text-cyan-400">
+
+Home
+
+</Link>
+
+
+
+<Link href="/services" className="block hover:text-cyan-400">
+
+All Services
+
+</Link>
+
+
+
+<a href="/#templates" className="block hover:text-cyan-400">
+
+Templates
+
+</a>
+
+
+
+<a href="/#contact" className="block hover:text-cyan-400">
+
+Contact
+
+</a>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* Services */}
+
+
+<div>
+
+
+<h3 className="text-lg font-bold text-cyan-400">
+
+Popular Services
+
+</h3>
+
+
+
+
+
+<ul className="mt-4 space-y-3 text-gray-400">
+
+
+<li>🖨️ Printing</li>
+
+<li>📄 Resume Design</li>
+
+<li>🏛️ Government Services</li>
+
+<li>📚 Spiral Binding</li>
+
+<li>🎨 Custom Designs</li>
+
+
+</ul>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* Contact */}
+
+
+<div>
+
+
+<h3 className="text-lg font-bold text-cyan-400">
+
+Contact
+
+</h3>
+
+
+
+
+<div className="mt-4 space-y-4 text-gray-400">
+
+
+
+
+
+<div className="flex gap-3 items-center">
+
+<Phone size={18}/>
+
+<span>
+
+9485665412
+
+</span>
+
+</div>
+
+
+
+
+
+
+
+
+<div className="flex gap-3 items-center">
+
+<Mail size={18}/>
+
+<span>
+
+Email Support
+
+</span>
+
+</div>
+
+
+
+
+
+
+
+
+<p>
+
+⏰ Mon - Sun Available
+
+</p>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div className="border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-sm">
+
+
+© {new Date().getFullYear()} Dhruv Digital & Stationary. All Rights Reserved.
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+</footer>
+
+
+)
+
+
 }

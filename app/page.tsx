@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Services from "../components/Services";
+import AllServices from "../components/AllServices";
 import WhyChooseUs from "../components/WhyChooseUs";
 import Reviews from "../components/Reviews";
 import Contact from "../components/Contact";
@@ -10,6 +11,7 @@ import Reveal from "../components/Reveal";
 import PrintOrder from "../components/PrintOrder";
 import Resume from "../components/Resume";
 import Government from "../components/Government";
+import Templates from "../components/Templates";
 
 
 
@@ -23,10 +25,7 @@ return(
 
 className="min-h-screen bg-black text-white overflow-x-hidden"
 
-
-
 >
-
 
 
 <Navbar />
@@ -34,15 +33,7 @@ className="min-h-screen bg-black text-white overflow-x-hidden"
 
 
 
-
-<section
-
-id="home"
-
-className="scroll-mt-24"
-
->
-
+<section id="home" className="scroll-mt-24">
 
 <Reveal>
 
@@ -50,7 +41,6 @@ className="scroll-mt-24"
 
 </Reveal>
 
-
 </section>
 
 
@@ -58,14 +48,8 @@ className="scroll-mt-24"
 
 
 
-<section
 
-id="about"
-
-className="scroll-mt-24"
-
->
-
+<section id="about" className="scroll-mt-24">
 
 <Reveal>
 
@@ -73,7 +57,6 @@ className="scroll-mt-24"
 
 </Reveal>
 
-
 </section>
 
 
@@ -81,14 +64,8 @@ className="scroll-mt-24"
 
 
 
-<section
 
-id="services"
-
-className="scroll-mt-24"
-
->
-
+<section id="services" className="scroll-mt-24">
 
 <Reveal>
 
@@ -96,6 +73,24 @@ className="scroll-mt-24"
 
 </Reveal>
 
+</section>
+
+
+
+
+
+
+
+
+{/* ALL SERVICES */}
+
+<section id="all-services" className="scroll-mt-24">
+
+<Reveal>
+
+<AllServices />
+
+</Reveal>
 
 </section>
 
@@ -105,14 +100,7 @@ className="scroll-mt-24"
 
 
 
-<section
-
-id="why"
-
-className="scroll-mt-24"
-
->
-
+<section id="why" className="scroll-mt-24">
 
 <Reveal>
 
@@ -120,7 +108,6 @@ className="scroll-mt-24"
 
 </Reveal>
 
-
 </section>
 
 
@@ -129,41 +116,7 @@ className="scroll-mt-24"
 
 
 
-
-<section
-
-id="reviews"
-
-className="scroll-mt-24"
-
->
-
-
-<Reveal>
-
-<Reviews />
-
-</Reveal>
-
-
-</section>
-
-
-
-
-
-
-
-{/* GOVERNMENT SERVICES */}
-
-<section
-
-id="government"
-
-className="scroll-mt-24"
-
->
-
+<section id="government" className="scroll-mt-24">
 
 <Reveal>
 
@@ -171,7 +124,6 @@ className="scroll-mt-24"
 
 </Reveal>
 
-
 </section>
 
 
@@ -180,17 +132,7 @@ className="scroll-mt-24"
 
 
 
-
-{/* RESUME */}
-
-<section
-
-id="resume"
-
-className="scroll-mt-24"
-
->
-
+<section id="resume" className="scroll-mt-24">
 
 <Reveal>
 
@@ -198,6 +140,23 @@ className="scroll-mt-24"
 
 </Reveal>
 
+</section>
+
+
+
+
+
+
+
+{/* DESIGN TEMPLATES */}
+
+<section id="templates" className="scroll-mt-24">
+
+<Reveal>
+
+<Templates />
+
+</Reveal>
 
 </section>
 
@@ -207,20 +166,13 @@ className="scroll-mt-24"
 
 
 
+<section id="print-order" className="scroll-mt-24">
 
-{/* PRINT ORDER */}
-
-<section
-
-id="print-order"
-
-className="scroll-mt-24"
-
->
-
+<Reveal>
 
 <PrintOrder />
 
+</Reveal>
 
 </section>
 
@@ -230,21 +182,29 @@ className="scroll-mt-24"
 
 
 
-<section
+<section id="reviews" className="scroll-mt-24">
 
-id="contact"
+<Reveal>
 
-className="scroll-mt-24"
+<Reviews />
 
->
+</Reveal>
 
+</section>
+
+
+
+
+
+
+
+<section id="contact" className="scroll-mt-24">
 
 <Reveal>
 
 <Contact />
 
 </Reveal>
-
 
 </section>
 
@@ -255,7 +215,6 @@ className="scroll-mt-24"
 
 
 <Footer />
-
 
 
 </main>
