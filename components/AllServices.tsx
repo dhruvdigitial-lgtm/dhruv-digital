@@ -1,60 +1,70 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 const services = [
 
-{
-id:"printing",
-name:"🖨️ Print Services"
-},
+  {
+    target:"printing",
+    name:"🖨️ Print Services",
+    type:"page"
+  },
 
-{
-id:"resume",
-name:"📄 Resume Services"
-},
+  {
+    target:"resume",
+    name:"📄 Resume Services",
+    type:"scroll"
+  },
 
-{
-id:"government",
-name:"🏛️ Government Services"
-},
+  {
+    target:"government",
+    name:"🏛️ Government Services",
+    type:"scroll"
+  },
 
-{
-id:"forms",
-name:"💻 Online Form Filling"
-},
+  {
+    target:"forms",
+    name:"💻 Online Form Filling",
+    type:"page"
+  },
 
-{
-id:"photo",
-name:"📷 Photo & Lamination"
-},
+  {
+    target:"photo",
+    name:"📷 Photo & Lamination",
+    type:"page"
+  },
 
-{
-id:"binding",
-name:"📚 Spiral Binding"
-},
+  {
+    target:"binding",
+    name:"📚 Spiral Binding",
+    type:"page"
+  },
 
-{
-id:"stationery",
-name:"✏️ Stationery Items"
-},
+  {
+    target:"stationery",
+    name:"✏️ Stationery Items",
+    type:"page"
+  },
 
-{
-id:"design",
-name:"🎨 Design Templates"
-},
+  {
+    target:"design",
+    name:"🎨 Design Templates",
+    type:"page"
+  },
 
-{
-id:"certificate",
-name:"🏆 Certificate Design"
-},
+  {
+    target:"certificate",
+    name:"🏆 Certificate Design",
+    type:"page"
+  },
 
-{
-id:"business",
-name:"💼 Business Designs"
-}
-
+  {
+    target:"business",
+    name:"💼 Business Designs",
+    type:"page"
+  }
 
 ];
 
@@ -65,14 +75,20 @@ name:"💼 Business Designs"
 export default function AllServices(){
 
 
-const [search,setSearch]=useState("");
+const [search,setSearch] = useState("");
+
+const router = useRouter();
 
 
 
-const filtered=services.filter((service)=>
+
+
+const filtered = services.filter((service)=>
 
 service.name
+
 .toLowerCase()
+
 .includes(search.toLowerCase())
 
 );
@@ -80,26 +96,78 @@ service.name
 
 
 
-const goToService=(id:string)=>{
 
 
-const element = document.getElementById(id);
+const goToService = (service:any)=>{
+
+
+
+if(service.type==="scroll"){
+
+
+
+const element = document.getElementById(service.target);
+
 
 
 if(element){
+
 
 element.scrollIntoView({
 
 behavior:"smooth",
 
-block:"center"
+block:"start"
 
 });
+
 
 }
 
 
+return;
+
+
+}
+
+
+
+
+
+if(service.target==="printing"){
+
+
+router.push("/services/printing");
+
+
+}
+
+
+
+else if(service.target==="design"){
+
+
+router.push("/templates/resume");
+
+
+}
+
+
+
+else{
+
+
+router.push(`/services/${service.target}`);
+
+
+}
+
+
+
 };
+
+
+
 
 
 
@@ -121,11 +189,16 @@ className="py-20 bg-black text-white"
 
 
 
-<h2 className="text-4xl text-cyan-400 font-bold text-center">
+
+
+<h2 className="text-4xl md:text-5xl text-cyan-400 font-bold text-center">
 
 All Services
 
 </h2>
+
+
+
 
 
 
@@ -139,17 +212,26 @@ Search and explore all DDS services
 
 
 
+
+
+
 <input
+
 
 value={search}
 
+
 onChange={(e)=>setSearch(e.target.value)}
+
 
 placeholder="🔍 Search service..."
 
+
 className="mt-8 w-full bg-gray-900 border border-gray-700 rounded-xl px-5 py-4 outline-none focus:border-cyan-400"
 
+
 />
+
 
 
 
@@ -161,20 +243,29 @@ className="mt-8 w-full bg-gray-900 border border-gray-700 rounded-xl px-5 py-4 o
 
 
 
+
+
 {
 
 filtered.map((service)=>(
 
 
+
 <div
 
-key={service.id}
 
-onClick={()=>goToService(service.id)}
+key={service.target}
 
-className="cursor-pointer bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-cyan-400 transition"
+
+onClick={()=>goToService(service)}
+
+
+
+className="cursor-pointer bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-cyan-400 hover:-translate-y-1 transition"
+
 
 >
+
 
 
 <h3 className="text-cyan-400 font-bold">
@@ -182,6 +273,7 @@ className="cursor-pointer bg-gray-900 border border-gray-800 rounded-xl p-5 hove
 {service.name}
 
 </h3>
+
 
 
 
@@ -193,7 +285,10 @@ Click to view details
 
 
 
+
+
 </div>
+
 
 
 ))
@@ -208,10 +303,13 @@ Click to view details
 
 
 
+
 </div>
 
 
+
 </section>
+
 
 
 )

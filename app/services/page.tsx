@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 
 
-
 const serviceCategories = [
 
 
 {
 title:"🖨️ Printing Services",
+
+link:"/services/printing",
 
 services:[
 
@@ -27,8 +28,11 @@ services:[
 
 
 
+
 {
 title:"📄 Document & Designing Services",
+
+link:"/resume",
 
 services:[
 
@@ -45,8 +49,12 @@ services:[
 
 
 
+
+
 {
 title:"🏛️ Government Services",
+
+link:"/government",
 
 services:[
 
@@ -65,8 +73,13 @@ services:[
 
 
 
+
+
+
 {
 title:"🎨 Design Templates",
+
+link:"/templates",
 
 services:[
 
@@ -75,8 +88,7 @@ services:[
 "Assignment Templates",
 "Visiting Card Design",
 "Poster Design",
-"Banner Design",
-"Invitation Card Design"
+"Banner Design"
 
 ]
 
@@ -84,8 +96,13 @@ services:[
 
 
 
+
+
+
 {
 title:"✏️ Stationery Services",
+
+link:"/",
 
 services:[
 
@@ -94,8 +111,7 @@ services:[
 "Files",
 "Registers",
 "Project Covers",
-"Office Stationery",
-"School Stationery"
+"Office Stationery"
 
 ]
 
@@ -103,24 +119,30 @@ services:[
 
 
 
+
+
+
 {
 title:"💻 Online Digital Services",
+
+link:"/",
 
 services:[
 
 "Online Form Filling",
 "Document Upload",
 "Application Assistance",
-"Status Checking",
-"Digital Support"
+"Status Checking"
 
 ]
 
 }
 
 
-
 ];
+
+
+
 
 
 
@@ -137,7 +159,6 @@ const [search,setSearch]=useState("");
 
 
 
-
 return(
 
 
@@ -145,11 +166,7 @@ return(
 
 
 
-
-
 <div className="max-w-7xl mx-auto px-5">
-
-
 
 
 
@@ -164,8 +181,6 @@ className="inline-block border border-cyan-500 px-5 py-2 rounded-xl"
 ← Back Home
 
 </Link>
-
-
 
 
 
@@ -194,23 +209,15 @@ Dhruv Digital & Stationary complete service list
 
 
 
-
-
 <input
-
 
 placeholder="🔍 Search service..."
 
-
 value={search}
-
 
 onChange={(e)=>setSearch(e.target.value)}
 
-
 className="mt-10 w-full bg-gray-900 border border-gray-700 rounded-xl px-6 py-4 outline-none focus:border-cyan-400"
-
-
 
 />
 
@@ -233,11 +240,8 @@ className="mt-10 w-full bg-gray-900 border border-gray-700 rounded-xl px-6 py-4 
 serviceCategories.map((category)=>(
 
 
-<div
 
-key={category.title}
-
->
+<div key={category.title}>
 
 
 <h2 className="text-2xl text-cyan-400 font-bold mb-5">
@@ -262,9 +266,7 @@ category.services
 
 .filter((service)=>
 
-service
-.toLowerCase()
-.includes(search.toLowerCase())
+service.toLowerCase().includes(search.toLowerCase())
 
 )
 
@@ -278,8 +280,6 @@ key={service}
 
 className="bg-gray-900 border border-gray-800 rounded-2xl p-6 hover:border-cyan-400 hover:-translate-y-2 transition"
 
-
-
 >
 
 
@@ -289,8 +289,6 @@ className="bg-gray-900 border border-gray-800 rounded-2xl p-6 hover:border-cyan-
 {service}
 
 </h3>
-
-
 
 
 
@@ -304,28 +302,17 @@ Available at DDS
 
 
 
+<Link
 
-<a
+href={category.link}
 
-
-href={`https://wa.me/919485665412?text=I want ${service} service`}
-
-
-target="_blank"
-
-
-className="inline-block mt-4 bg-green-600 px-4 py-2 rounded-xl text-sm"
-
+className="inline-block mt-4 bg-cyan-500 text-black px-4 py-2 rounded-xl text-sm font-bold"
 
 >
 
+View Service
 
-Enquiry
-
-
-</a>
-
-
+</Link>
 
 
 
@@ -342,11 +329,7 @@ Enquiry
 
 
 
-
 </div>
-
-
-
 
 
 
@@ -355,7 +338,6 @@ Enquiry
 
 
 ))
-
 
 
 }
@@ -368,11 +350,8 @@ Enquiry
 
 
 
-
-
-
-
 </div>
+
 
 
 </main>

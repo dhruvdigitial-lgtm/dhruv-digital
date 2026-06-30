@@ -31,16 +31,24 @@ subsets:["latin"],
 export const metadata: Metadata = {
 
 
+metadataBase: new URL(
+"https://dhruvdigital.vercel.app"
+),
+
+
+
 
 title:
-"Dhruv Digital & Stationary | Printing, Resume & Online Services",
+"Dhruv Digital & Stationary | Printing & Digital Services",
+
+
 
 
 
 
 description:
-"Dhruv Digital & Stationary provides printing services, resume designing, government online services, spiral binding, stationery items, certificate design and digital solutions.",
 
+"Dhruv Digital & Stationary provides printing, resume designing, government online services, form filling, stationery, binding and custom design solutions.",
 
 
 
@@ -50,35 +58,25 @@ description:
 keywords:[
 
 
-"Dhruv Digital",
-
-
-"Dhruv Digital and Stationary",
-
+"Dhruv Digital & Stationary",
 
 "Printing Services",
 
+"Resume Designing",
 
-"Resume Design",
+"Online Form Filling",
 
+"Government Services",
 
-"Online Services",
+"PAN Card",
 
-
-"PAN Card Services",
-
-
-"Voter ID Services",
-
+"Voter ID",
 
 "Spiral Binding",
 
+"Certificate Design",
 
-"Stationery",
-
-
-"Certificate Design"
-
+"Stationery"
 
 ],
 
@@ -88,11 +86,11 @@ keywords:[
 
 
 
-verification: {
+verification:{
 
 
 google:
-"jHMGD-I2L972WB0IkzamJ8_DsBxfnd-9jBoZLrXg9hU",
+"jHMGD-I2L972WB0IkzamJ8_DsBxfnd-9jBoZLrXg9hU"
 
 
 },
@@ -106,20 +104,45 @@ google:
 openGraph:{
 
 
-
 title:
+
 "Dhruv Digital & Stationary",
 
 
 
-
 description:
-"One Stop Solution for Printing, Digital Services, Resume, Government Services & Custom Designs.",
+
+"One Stop Solution for Printing, Resume, Government Services & Digital Solutions.",
 
 
 
+url:"https://dhruvdigital.vercel.app",
 
-type:"website",
+
+
+siteName:"Dhruv Digital & Stationary",
+
+
+
+images:[
+
+{
+
+url:"/logo.png",
+
+width:512,
+
+height:512,
+
+alt:"Dhruv Digital & Stationary"
+
+}
+
+],
+
+
+
+type:"website"
 
 
 
@@ -134,12 +157,12 @@ type:"website",
 icons:{
 
 
-
 icon:"/logo.png"
 
 
-
 }
+
+
 
 
 
@@ -172,37 +195,31 @@ themeColor:"#06b6d4"
 export default function RootLayout({
 
 
-
 children,
 
 
+}:Readonly<{
 
-}: Readonly<{
-
-children: React.ReactNode;
+children:React.ReactNode;
 
 }>) {
 
 
 
-return (
+return(
 
 
 
 <html
 
 
-
 lang="en"
-
 
 
 data-scroll-behavior="smooth"
 
 
-
 className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-
 
 
 >

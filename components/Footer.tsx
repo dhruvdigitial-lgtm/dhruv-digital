@@ -7,13 +7,17 @@ import {
 
 
 
+
 export default function Footer(){
+
 
 
 return(
 
 
 <footer className="bg-black border-t border-gray-800 text-white">
+
+
 
 
 
@@ -31,10 +35,8 @@ return(
 
 
 
-{/* Brand */}
-
-
 <div>
+
 
 
 <h2 className="text-2xl font-bold text-cyan-400">
@@ -45,32 +47,53 @@ Dhruv Digital & Stationary
 
 
 
-<p className="text-gray-400 mt-4 text-sm">
+
+
+<p className="text-gray-400 mt-4 text-sm leading-6">
+
 
 Your one stop solution for Printing,
-Digital Services, Government Assistance
+Resume, Government Services, Digital Support
 and Custom Designs.
+
 
 </p>
 
 
 
 
+
+
+
 <a
+
 
 href="https://wa.me/919485665412"
 
+
 target="_blank"
 
-className="inline-flex items-center gap-2 mt-5 bg-green-600 px-5 py-3 rounded-xl"
+
+rel="noopener noreferrer"
+
+
+className="inline-flex items-center gap-2 mt-5 bg-green-600 px-5 py-3 rounded-xl hover:bg-green-500 transition"
+
 
 >
 
+
+
 <MessageCircle size={18}/>
+
 
 WhatsApp
 
+
 </a>
+
+
+
 
 
 
@@ -82,9 +105,6 @@ WhatsApp
 
 
 
-
-
-{/* Quick Links */}
 
 
 <div>
@@ -99,11 +119,21 @@ Quick Links
 
 
 
+
+
 <div className="space-y-3 mt-4 text-gray-400">
 
 
 
-<Link href="/" className="block hover:text-cyan-400">
+
+
+<Link
+
+href="/"
+
+className="block hover:text-cyan-400"
+
+>
 
 Home
 
@@ -111,7 +141,16 @@ Home
 
 
 
-<Link href="/services" className="block hover:text-cyan-400">
+
+
+
+<Link
+
+href="/services"
+
+className="block hover:text-cyan-400"
+
+>
 
 All Services
 
@@ -119,15 +158,33 @@ All Services
 
 
 
-<a href="/#templates" className="block hover:text-cyan-400">
+
+
+
+<Link
+
+href="/templates"
+
+className="block hover:text-cyan-400"
+
+>
 
 Templates
 
-</a>
+</Link>
 
 
 
-<a href="/#contact" className="block hover:text-cyan-400">
+
+
+
+<a
+
+href="/#contact"
+
+className="block hover:text-cyan-400"
+
+>
 
 Contact
 
@@ -135,10 +192,14 @@ Contact
 
 
 
+
+
 </div>
 
 
 
+
+
 </div>
 
 
@@ -147,9 +208,6 @@ Contact
 
 
 
-
-
-{/* Services */}
 
 
 <div>
@@ -165,21 +223,25 @@ Popular Services
 
 
 
+
 <ul className="mt-4 space-y-3 text-gray-400">
 
 
 <li>🖨️ Printing</li>
 
-<li>📄 Resume Design</li>
+<li>📄 Resume Services</li>
 
 <li>🏛️ Government Services</li>
 
-<li>📚 Spiral Binding</li>
+<li>📚 Binding</li>
 
-<li>🎨 Custom Designs</li>
+<li>🎨 Design Templates</li>
 
 
 </ul>
+
+
+
 
 
 
@@ -193,10 +255,8 @@ Popular Services
 
 
 
-{/* Contact */}
-
-
 <div>
+
 
 
 <h3 className="text-lg font-bold text-cyan-400">
@@ -204,6 +264,10 @@ Popular Services
 Contact
 
 </h3>
+
+
+
+
 
 
 
@@ -216,7 +280,9 @@ Contact
 
 <div className="flex gap-3 items-center">
 
+
 <Phone size={18}/>
+
 
 <span>
 
@@ -224,8 +290,8 @@ Contact
 
 </span>
 
-</div>
 
+</div>
 
 
 
@@ -235,7 +301,9 @@ Contact
 
 <div className="flex gap-3 items-center">
 
+
 <Mail size={18}/>
+
 
 <span>
 
@@ -243,8 +311,8 @@ Email Support
 
 </span>
 
-</div>
 
+</div>
 
 
 
@@ -266,18 +334,19 @@ Email Support
 
 
 
-</div>
-
-
-
-
-
 
 
 
 
 </div>
 
+
+
+
+
+
+
+</div>
 
 
 
@@ -304,10 +373,15 @@ Email Support
 </div>
 
 
+
+
+
 </footer>
 
 
+
 )
+
 
 
 }

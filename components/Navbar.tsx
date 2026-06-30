@@ -18,130 +18,140 @@ import {
 } from "lucide-react";
 
 
+export default function Navbar() {
 
-export default function Navbar(){
 
+  const [open, setOpen] = useState(false);
 
-const [open,setOpen] = useState(false);
 
 
+  const navItems = [
 
+    {
+      name: "Home",
+      id: "home",
+      icon: Home
+    },
 
+    {
+      name: "Services",
+      id: "services",
+      icon: Printer
+    },
 
-const navItems=[
+    {
+      name: "All Services",
+      link: "/services",
+      icon: Search
+    },
 
+    {
+      name: "Templates",
+      link: "/templates",
+      icon: Palette
+    },
 
-{
-name:"Home",
-id:"home",
-icon:Home
-},
+    {
+      name: "Government Services",
+      id: "government",
+      icon: Landmark
+    },
 
+    {
+      name: "Resume",
+      id: "resume",
+      icon: FileText
+    },
 
+    {
+      name: "Print Order",
+      id: "print-order",
+      icon: Printer
+    },
 
-{
-name:"Services",
-id:"services",
-icon:Printer
-},
+    {
+      name: "Contact",
+      id: "contact",
+      icon: Phone
+    }
 
+  ];
 
 
-{
-name:"All Services",
-link:"/services",
-icon:Search
-},
 
 
 
-{
-name:"Templates",
-id:"templates",
-icon:Palette
-},
+  const scrollTo = (id:string)=>{
 
 
+    setOpen(false);
 
-{
-name:"Government Services",
-id:"government",
-icon:Landmark
-},
 
 
+    setTimeout(()=>{
 
-{
-name:"Resume",
-id:"resume",
-icon:FileText
-},
 
+      const section = document.getElementById(id);
 
 
-{
-name:"Print Order",
-id:"print-order",
-icon:Printer
-},
 
+      if(section){
 
 
-{
-name:"Contact",
-id:"contact",
-icon:Phone
-}
+        const y =
 
+        section.getBoundingClientRect().top +
 
-];
+        window.scrollY -
 
+        90;
 
 
 
+        window.scrollTo({
 
+          top:y,
 
+          behavior:"smooth"
 
+        });
 
 
-const scrollTo=(id:string)=>{
+      }
 
 
-const section=document.getElementById(id);
+    },100);
 
 
+  };
 
-if(section){
 
 
-const position =
 
-section.getBoundingClientRect().top +
 
-window.scrollY -
 
-80;
 
+  const handleClick = (item:any)=>{
 
 
-window.scrollTo({
+    if(item.link){
 
-top:position,
 
-behavior:"smooth"
+      window.location.href = item.link;
 
-});
 
+    }
 
-}
+    else{
 
 
+      scrollTo(item.id);
 
-setOpen(false);
 
+    }
 
-};
 
+  };
 
 
 
@@ -149,320 +159,266 @@ setOpen(false);
 
 
 
-const handleClick=(item:any)=>{
+  return (
 
 
-if(item.link){
+    <header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-xl">
 
 
-window.location.href=item.link;
 
+      <div className="max-w-7xl mx-auto px-5">
 
-}
 
-else{
 
+        <div className="h-20 flex items-center justify-between">
 
-scrollTo(item.id);
 
 
-}
 
 
-};
+          <Link
 
+            href="/"
 
+            className="flex items-center gap-3"
 
+          >
 
 
 
+            <div className="relative h-14 w-14 bg-white rounded-full overflow-hidden">
 
 
+              <Image
 
-return(
+                src="/logo.png"
 
+                alt="DDS"
 
-<header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-xl">
+                fill
 
+                sizes="56px"
 
+                className="object-contain"
 
-<div className="max-w-7xl mx-auto px-5">
+              />
 
 
+            </div>
 
-<div className="h-20 flex items-center justify-between">
 
 
 
 
+            <div className="hidden sm:block">
 
 
+              <h2 className="text-white font-bold">
 
-<Link
+                Dhruv Digital & Stationary
 
-href="/"
+              </h2>
 
-className="flex items-center gap-3"
 
->
 
+              <p className="text-cyan-400 text-xs">
 
+                Digital & Printing Solutions
 
+              </p>
 
-<div className="relative h-14 w-14 bg-white rounded-full overflow-hidden">
 
 
-<Image
+            </div>
 
-src="/logo.png"
 
-alt="DDS"
 
-fill
+          </Link>
 
-sizes="56px"
 
-className="object-contain"
 
-/>
 
 
-</div>
 
 
 
+          <nav className="hidden lg:flex gap-5">
 
 
+            {
 
+              navItems.map((item)=>{
 
-<div className="hidden sm:block">
 
+                const Icon = item.icon;
 
-<h2 className="text-white font-bold">
 
-Dhruv Digital & Stationary
 
-</h2>
+                return(
 
 
-<p className="text-cyan-400 text-xs">
+                  <button
 
-Digital & Printing Solutions
 
-</p>
+                    key={item.name}
 
 
-</div>
+                    onClick={()=>handleClick(item)}
 
 
+                    className="text-gray-300 hover:text-cyan-400 flex items-center gap-2 text-sm"
 
 
+                  >
 
-</Link>
 
+                    <Icon size={17}/>
 
 
+                    {item.name}
 
 
+                  </button>
 
 
+                )
 
 
-<nav className="hidden lg:flex gap-5">
+              })
 
+            }
 
-{
 
-navItems.map((item)=>{
+          </nav>
 
 
-const Icon=item.icon;
 
 
 
-return(
 
 
-<button
 
+          <a
 
-key={item.name}
+            href="https://wa.me/919485665412"
 
+            target="_blank"
 
-onClick={()=>handleClick(item)}
+            rel="noopener noreferrer"
 
+            className="hidden md:flex items-center gap-2 bg-green-600 px-5 py-3 rounded-xl text-white"
 
-className="text-gray-300 hover:text-cyan-400 flex items-center gap-2 text-sm"
+          >
 
 
->
+            <MessageCircle size={18}/>
 
 
+            WhatsApp
 
-<Icon size={17}/>
 
+          </a>
 
-{item.name}
 
 
 
-</button>
 
 
-)
 
 
-})
 
+          <button
 
-}
+            className="lg:hidden text-white"
 
+            onClick={()=>setOpen(!open)}
 
+          >
 
-</nav>
 
+            {
 
+              open ? <X/> : <Menu/>
 
+            }
 
 
+          </button>
 
 
 
 
-<a
 
-href="https://wa.me/919485665412"
+        </div>
 
-target="_blank"
 
-rel="noopener noreferrer"
 
+      </div>
 
-className="hidden md:flex items-center gap-2 bg-green-600 px-5 py-3 rounded-xl text-white"
 
 
->
 
 
 
-<MessageCircle size={18}/>
 
 
-WhatsApp
+      {
 
 
+        open && (
 
-</a>
 
+          <div className="lg:hidden bg-black p-5">
 
 
+            {
 
 
+              navItems.map((item)=>(
 
 
+                <button
 
 
-<button
+                  key={item.name}
 
 
-className="lg:hidden text-white"
+                  onClick={()=>handleClick(item)}
 
 
-onClick={()=>setOpen(!open)}
+                  className="block text-white p-3 w-full text-left"
 
 
->
+                >
 
 
-{
+                  {item.name}
 
-open ? <X/> : <Menu/>
 
-}
+                </button>
 
 
+              ))
 
-</button>
+            }
 
 
+          </div>
 
 
+        )
 
 
-</div>
+      }
 
 
-</div>
 
 
 
+    </header>
 
 
-
-
-
-
-{
-
-open && (
-
-
-<div className="lg:hidden bg-black p-5">
-
-
-
-{
-
-navItems.map((item)=>(
-
-
-<button
-
-
-key={item.name}
-
-
-onClick={()=>handleClick(item)}
-
-
-className="block text-white p-3 w-full text-left"
-
-
->
-
-
-{item.name}
-
-
-</button>
-
-
-
-))
-
-
-}
-
-
-
-
-</div>
-
-
-
-)
-
-
-}
-
-
-
-
-</header>
-
-
-)
-
+  );
 
 
 }

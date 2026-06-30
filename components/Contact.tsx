@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Phone, MessageCircle, Mail, Clock } from "lucide-react";
+import { Phone, MessageCircle, Mail, Clock, MapPin } from "lucide-react";
 
 
 export default function Contact(){
@@ -15,6 +15,8 @@ email:"",
 message:""
 
 });
+
+
 
 
 
@@ -44,10 +46,22 @@ setForm({
 
 
 
+
 const handleSubmit=(e:React.FormEvent)=>{
 
 
 e.preventDefault();
+
+
+
+if(!form.name || !form.message){
+
+alert("Please fill name and message");
+
+return;
+
+}
+
 
 
 
@@ -56,11 +70,17 @@ const text = `
 
 Name: ${form.name}
 
+
 Email: ${form.email}
 
-Message: ${form.message}
+
+Message:
+
+${form.message}
 
 `;
+
+
 
 
 
@@ -71,6 +91,9 @@ window.open(
 "_blank"
 
 );
+
+
+
 
 
 
@@ -92,6 +115,9 @@ message:""
 
 
 
+
+
+
 return(
 
 
@@ -100,9 +126,10 @@ return(
 
 id="contact"
 
-className="py-20 bg-gray-950 text-white"
+className="py-24 bg-gray-950 text-white"
 
 >
+
 
 
 <div className="max-w-6xl mx-auto px-5">
@@ -112,8 +139,7 @@ className="py-20 bg-gray-950 text-white"
 
 
 
-
-<h2 className="text-4xl font-bold text-center text-cyan-400">
+<h2 className="text-4xl md:text-5xl font-bold text-center text-cyan-400">
 
 Contact Us
 
@@ -123,7 +149,8 @@ Contact Us
 
 
 
-<p className="text-center text-gray-400 mt-3">
+
+<p className="text-center text-gray-400 mt-4">
 
 Get in touch with Dhruv Digital & Stationary
 
@@ -137,9 +164,7 @@ Get in touch with Dhruv Digital & Stationary
 
 
 
-<div className="grid md:grid-cols-2 gap-10 mt-12">
-
-
+<div className="grid md:grid-cols-2 gap-8 mt-12">
 
 
 
@@ -148,6 +173,7 @@ Get in touch with Dhruv Digital & Stationary
 
 
 <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+
 
 
 
@@ -165,13 +191,14 @@ Visit Us
 
 
 
-<div className="space-y-5 mt-6">
+<div className="space-y-5 mt-8">
 
 
 
 
 
-<div className="flex gap-3 items-center">
+
+<div className="flex gap-4 items-center">
 
 <Phone className="text-cyan-400"/>
 
@@ -190,7 +217,7 @@ Call / WhatsApp: 9485665412
 
 
 
-<div className="flex gap-3 items-center">
+<div className="flex gap-4 items-center">
 
 <Mail className="text-cyan-400"/>
 
@@ -209,13 +236,13 @@ Email Support Available
 
 
 
-<div className="flex gap-3 items-center">
+<div className="flex gap-4 items-center">
 
 <Clock className="text-cyan-400"/>
 
 <p>
 
-Timing: Mon - Sun Available
+Mon - Sun Available
 
 </p>
 
@@ -227,7 +254,27 @@ Timing: Mon - Sun Available
 
 
 
-<div className="flex gap-3 items-center">
+
+<div className="flex gap-4 items-center">
+
+<MapPin className="text-cyan-400"/>
+
+<p>
+
+Digital & Printing Services
+
+</p>
+
+</div>
+
+
+
+
+
+
+
+
+<div className="flex gap-4 items-center">
 
 <MessageCircle className="text-green-500"/>
 
@@ -244,7 +291,11 @@ Fast WhatsApp Response
 
 
 
+
 </div>
+
+
+
 
 
 
@@ -256,13 +307,17 @@ href="https://wa.me/919485665412"
 
 target="_blank"
 
-className="inline-block mt-8 bg-green-600 px-6 py-3 rounded-xl"
+rel="noopener noreferrer"
+
+className="inline-block mt-8 bg-green-600 hover:bg-green-500 px-6 py-3 rounded-xl font-bold transition"
 
 >
 
 Chat on WhatsApp
 
 </a>
+
+
 
 
 
@@ -280,9 +335,12 @@ Chat on WhatsApp
 
 <form
 
+
 onSubmit={handleSubmit}
 
+
 className="bg-gray-900 p-8 rounded-2xl border border-gray-800 space-y-5"
+
 
 >
 
@@ -290,19 +348,30 @@ className="bg-gray-900 p-8 rounded-2xl border border-gray-800 space-y-5"
 
 
 
+
 <input
+
 
 name="name"
 
+
 value={form.name}
+
 
 onChange={handleChange}
 
+
 placeholder="Your Name"
+
 
 className="w-full p-4 bg-black border border-gray-700 rounded-xl"
 
+
+required
+
+
 />
+
 
 
 
@@ -312,17 +381,27 @@ className="w-full p-4 bg-black border border-gray-700 rounded-xl"
 
 <input
 
+
+type="email"
+
+
 name="email"
+
 
 value={form.email}
 
+
 onChange={handleChange}
+
 
 placeholder="Email"
 
+
 className="w-full p-4 bg-black border border-gray-700 rounded-xl"
 
+
 />
+
 
 
 
@@ -332,19 +411,31 @@ className="w-full p-4 bg-black border border-gray-700 rounded-xl"
 
 <textarea
 
+
 name="message"
+
 
 value={form.message}
 
+
 onChange={handleChange}
+
 
 placeholder="Your Message"
 
+
 rows={5}
+
 
 className="w-full p-4 bg-black border border-gray-700 rounded-xl"
 
+
+required
+
+
 />
+
+
 
 
 
@@ -355,13 +446,22 @@ className="w-full p-4 bg-black border border-gray-700 rounded-xl"
 
 <button
 
-className="w-full bg-cyan-500 text-black font-bold py-4 rounded-xl hover:bg-cyan-400"
+
+type="submit"
+
+
+className="w-full bg-cyan-500 text-black font-bold py-4 rounded-xl hover:bg-cyan-400 transition"
+
 
 >
 
+
 Send Enquiry
 
+
 </button>
+
+
 
 
 
@@ -377,21 +477,25 @@ Send Enquiry
 
 
 
-</div>
-
-
-
-
 
 
 </div>
+
+
+
+
+
+
+
+</div>
+
 
 
 </section>
 
 
-)
 
+)
 
 
 }

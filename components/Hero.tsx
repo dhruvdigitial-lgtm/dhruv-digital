@@ -1,6 +1,10 @@
 "use client";
 
-export default function Hero() {
+import Link from "next/link";
+
+
+export default function Hero(){
+
 
 
 const scrollTo=(id:string)=>{
@@ -12,7 +16,9 @@ document
 
 ?.scrollIntoView({
 
-behavior:"smooth"
+behavior:"smooth",
+
+block:"start"
 
 });
 
@@ -24,7 +30,8 @@ behavior:"smooth"
 
 
 
-return (
+return(
+
 
 
 <section
@@ -36,21 +43,20 @@ className="bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white"
 >
 
 
-<div className="text-center px-4 py-20">
+
+<div className="text-center px-5 py-24">
 
 
 
 
 
 
-<span className="inline-block rounded-full bg-cyan-500/20 px-4 py-2 text-sm font-semibold text-cyan-400">
 
+<span className="inline-block rounded-full bg-cyan-500/20 px-5 py-2 text-sm font-semibold text-cyan-400">
 
 Welcome to Dhruv Digital & Stationary
 
-
 </span>
-
 
 
 
@@ -83,7 +89,6 @@ Dhruv Digital
 
 
 
-
 <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-300">
 
 
@@ -101,9 +106,7 @@ Custom Designs & Digital Assistance
 
 
 
-
 <div className="mt-10 flex flex-wrap justify-center gap-4">
-
 
 
 
@@ -116,8 +119,7 @@ Custom Designs & Digital Assistance
 onClick={()=>scrollTo("print-order")}
 
 
-className="rounded-xl bg-cyan-500 px-8 py-4 font-semibold transition hover:bg-cyan-600 hover:scale-105"
-
+className="rounded-xl bg-cyan-500 text-black px-8 py-4 font-bold hover:scale-105 transition"
 
 >
 
@@ -141,7 +143,7 @@ className="rounded-xl bg-cyan-500 px-8 py-4 font-semibold transition hover:bg-cy
 onClick={()=>scrollTo("resume")}
 
 
-className="rounded-xl border border-cyan-500 px-8 py-4 font-semibold transition hover:bg-cyan-500 hover:scale-105"
+className="rounded-xl border border-cyan-500 px-8 py-4 font-bold hover:bg-cyan-500 hover:text-black transition"
 
 
 >
@@ -160,13 +162,13 @@ className="rounded-xl border border-cyan-500 px-8 py-4 font-semibold transition 
 
 
 
-<button
+<Link
 
 
-onClick={()=>scrollTo("templates")}
+href="/templates"
 
 
-className="rounded-xl border border-purple-500 px-8 py-4 font-semibold transition hover:bg-purple-500 hover:scale-105"
+className="rounded-xl border border-purple-500 px-8 py-4 font-bold hover:bg-purple-500 transition"
 
 
 >
@@ -175,7 +177,7 @@ className="rounded-xl border border-purple-500 px-8 py-4 font-semibold transitio
 🎨 Design Templates
 
 
-</button>
+</Link>
 
 
 
@@ -185,13 +187,13 @@ className="rounded-xl border border-purple-500 px-8 py-4 font-semibold transitio
 
 
 
-<a
+<Link
 
 
 href="/services"
 
 
-className="rounded-xl border border-yellow-500 px-8 py-4 font-semibold transition hover:bg-yellow-500 hover:scale-105"
+className="rounded-xl border border-yellow-500 px-8 py-4 font-bold hover:bg-yellow-500 hover:text-black transition"
 
 
 >
@@ -200,7 +202,7 @@ className="rounded-xl border border-yellow-500 px-8 py-4 font-semibold transitio
 🔍 All Services
 
 
-</a>
+</Link>
 
 
 
@@ -222,7 +224,7 @@ target="_blank"
 rel="noopener noreferrer"
 
 
-className="rounded-xl bg-green-600 px-8 py-4 font-semibold transition hover:bg-green-700 hover:scale-105"
+className="rounded-xl bg-green-600 px-8 py-4 font-bold hover:bg-green-700 transition"
 
 
 >
@@ -249,9 +251,7 @@ className="rounded-xl bg-green-600 px-8 py-4 font-semibold transition hover:bg-g
 
 
 
-<div className="mt-14 mx-auto max-w-5xl rounded-2xl border border-gray-800 bg-gray-900/70 p-8 shadow-xl">
-
-
+<div className="mt-16 mx-auto max-w-5xl rounded-2xl border border-gray-800 bg-gray-900/70 p-8">
 
 
 
@@ -265,9 +265,6 @@ className="rounded-xl bg-green-600 px-8 py-4 font-semibold transition hover:bg-g
 
 
 </h2>
-
-
-
 
 
 
@@ -290,19 +287,13 @@ Businesses and Everyone.
 
 
 
-
-
-
-<div className="mt-8 grid grid-cols-1 gap-4 text-left md:grid-cols-3">
-
+<div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
 
 
 
 
 
-
-
-<div className="rounded-xl bg-gray-800 p-4">
+<div className="rounded-xl bg-gray-800 p-5 hover:border hover:border-cyan-400 transition">
 
 🖨️ Printing & Photocopy
 
@@ -312,11 +303,7 @@ Businesses and Everyone.
 
 
 
-
-
-
-
-<div className="rounded-xl bg-gray-800 p-4">
+<div className="rounded-xl bg-gray-800 p-5 hover:border hover:border-cyan-400 transition">
 
 📄 Resume & Document Designing
 
@@ -326,11 +313,7 @@ Businesses and Everyone.
 
 
 
-
-
-
-
-<div className="rounded-xl bg-gray-800 p-4">
+<div className="rounded-xl bg-gray-800 p-5 hover:border hover:border-cyan-400 transition">
 
 🏛️ Government Services
 
@@ -340,13 +323,9 @@ Businesses and Everyone.
 
 
 
+<div className="rounded-xl bg-gray-800 p-5 hover:border hover:border-cyan-400 transition">
 
-
-
-
-<div className="rounded-xl bg-gray-800 p-4">
-
-📚 Spiral Binding & Stationery
+📚 Binding & Stationery
 
 </div>
 
@@ -354,13 +333,9 @@ Businesses and Everyone.
 
 
 
+<div className="rounded-xl bg-gray-800 p-5 hover:border hover:border-cyan-400 transition">
 
-
-
-
-<div className="rounded-xl bg-gray-800 p-4">
-
-🎓 Assignment & Certificate Design
+🎓 Assignment & Certificate
 
 </div>
 
@@ -368,16 +343,11 @@ Businesses and Everyone.
 
 
 
+<div className="rounded-xl bg-gray-800 p-5 hover:border hover:border-cyan-400 transition">
 
-
-
-
-<div className="rounded-xl bg-gray-800 p-4">
-
-🎨 Custom Templates & Designs
+🎨 Custom Designs
 
 </div>
-
 
 
 
@@ -402,14 +372,15 @@ Businesses and Everyone.
 
 
 
-
 </div>
+
 
 
 </section>
 
 
-);
+
+)
 
 
 }

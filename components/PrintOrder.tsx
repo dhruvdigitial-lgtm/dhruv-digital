@@ -9,7 +9,6 @@ export default function PrintOrder(){
 
 const [file,setFile] = useState<File | null>(null);
 
-
 const [name,setName] = useState("");
 
 const [mobile,setMobile] = useState("");
@@ -17,6 +16,9 @@ const [mobile,setMobile] = useState("");
 const [service,setService] = useState("");
 
 const [message,setMessage] = useState("");
+
+const [loading,setLoading] = useState(false);
+
 
 
 
@@ -26,6 +28,12 @@ const handleSubmit = async (e:React.FormEvent)=>{
 
 
 e.preventDefault();
+
+
+try{
+
+
+setLoading(true);
 
 
 
@@ -55,18 +63,18 @@ mobile
 
 
 formData.append(
+
 "message",
 
 `
-
 Service:
 ${service}
-
 
 Message:
 ${message}
 
 `
+
 );
 
 
@@ -76,8 +84,11 @@ ${message}
 if(file){
 
 formData.append(
+
 "file",
+
 file
+
 );
 
 }
@@ -87,17 +98,14 @@ file
 
 
 
-const res = await fetch("/api/submit",{
 
+const res = await fetch("/api/submit",{
 
 method:"POST",
 
-
 body:formData
 
-
 });
-
 
 
 
@@ -109,9 +117,7 @@ const result = await res.json();
 
 
 
-
 if(result.success){
-
 
 
 alert("Print Order Submitted Successfully");
@@ -135,7 +141,34 @@ setFile(null);
 else{
 
 
-alert("Something went wrong");
+alert(
+result.message || "Something went wrong"
+);
+
+
+}
+
+
+
+
+}
+
+catch(error){
+
+
+console.log(error);
+
+
+alert("Server error. Please try again");
+
+
+}
+
+
+finally{
+
+
+setLoading(false);
 
 
 }
@@ -150,21 +183,19 @@ alert("Something went wrong");
 
 
 
+
+
 return(
 
 
 <div className="py-20 bg-black text-white">
 
 
-
 <div className="max-w-5xl mx-auto px-5">
 
 
 
-
-
 <div className="text-center mb-12">
-
 
 
 <h2 className="text-4xl font-bold text-cyan-400">
@@ -182,8 +213,8 @@ Upload your documents and place your printing order easily
 </p>
 
 
-
 </div>
+
 
 
 
@@ -193,45 +224,30 @@ Upload your documents and place your printing order easily
 
 <form
 
-
 onSubmit={handleSubmit}
 
-
 className="grid gap-6 bg-white/5 border border-cyan-500/20 p-8 rounded-2xl"
-
 
 >
 
 
 
 
-
-
-
 <input
-
 
 type="text"
 
-
 placeholder="Your Name"
-
 
 value={name}
 
-
 onChange={(e)=>setName(e.target.value)}
-
 
 className="p-4 rounded-xl bg-black border border-gray-700"
 
-
 required
 
-
 />
-
-
 
 
 
@@ -239,27 +255,19 @@ required
 
 <input
 
-
 type="tel"
-
 
 placeholder="Mobile Number"
 
-
 value={mobile}
-
 
 onChange={(e)=>setMobile(e.target.value)}
 
-
 className="p-4 rounded-xl bg-black border border-gray-700"
-
 
 required
 
-
 />
-
 
 
 
@@ -269,40 +277,58 @@ required
 
 <select
 
-
 value={service}
-
 
 onChange={(e)=>setService(e.target.value)}
 
-
 className="p-4 rounded-xl bg-black border border-gray-700"
 
-
 required
-
 
 >
 
 
 
-<option value="">Select Service</option>
+<option value="">
+
+Select Service
+
+</option>
 
 
-<option>Color Print</option>
+<option>
+
+Color Print
+
+</option>
 
 
-<option>Black & White Print</option>
+<option>
+
+Black & White Print
+
+</option>
 
 
-<option>Lamination</option>
+<option>
+
+Lamination
+
+</option>
 
 
-<option>Scan</option>
+<option>
+
+Scan
+
+</option>
 
 
-<option>Resume Print</option>
+<option>
 
+Resume Print
+
+</option>
 
 
 </select>
@@ -314,12 +340,9 @@ required
 
 
 
-
 <label
 
-
 className="flex items-center gap-3 p-4 rounded-xl border border-dashed border-cyan-500/40 cursor-pointer"
-
 
 >
 
@@ -332,7 +355,6 @@ className="flex items-center gap-3 p-4 rounded-xl border border-dashed border-cy
 
 {
 
-
 file
 
 ?
@@ -343,23 +365,16 @@ file.name
 
 "Upload Document"
 
-
 }
-
-
-
 
 
 
 
 <input
 
-
 type="file"
 
-
 className="hidden"
-
 
 
 onChange={(e)=>{
@@ -367,15 +382,12 @@ onChange={(e)=>{
 
 if(e.target.files){
 
-
 setFile(e.target.files[0]);
-
 
 }
 
 
 }}
-
 
 
 />
@@ -392,25 +404,18 @@ setFile(e.target.files[0]);
 
 <textarea
 
-
 placeholder="Message / Special Instruction"
-
 
 rows={5}
 
-
 value={message}
-
 
 onChange={(e)=>setMessage(e.target.value)}
 
-
 className="p-4 rounded-xl bg-black border border-gray-700"
 
+/>
 
->
-
-</textarea>
 
 
 
@@ -421,20 +426,32 @@ className="p-4 rounded-xl bg-black border border-gray-700"
 
 <button
 
-
 type="submit"
 
+disabled={loading}
 
-className="flex items-center justify-center gap-2 bg-cyan-500 text-black font-bold py-4 rounded-xl"
-
+className="flex items-center justify-center gap-2 bg-cyan-500 text-black font-bold py-4 rounded-xl disabled:opacity-50"
 
 >
+
 
 
 <Send size={20}/>
 
 
-Submit Order
+{
+
+loading
+
+?
+
+"Submitting..."
+
+:
+
+"Submit Order"
+
+}
 
 
 </button>
@@ -443,12 +460,7 @@ Submit Order
 
 
 
-
-
-
 </form>
-
-
 
 
 
@@ -462,7 +474,6 @@ Submit Order
 
 
 )
-
 
 
 }

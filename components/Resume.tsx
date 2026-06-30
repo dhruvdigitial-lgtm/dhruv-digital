@@ -22,6 +22,9 @@ higher:false
 const [course,setCourse]=useState(false);
 
 
+const [loading,setLoading]=useState(false);
+
+
 
 const [name,setName]=useState("");
 const [father,setFather]=useState("");
@@ -106,23 +109,14 @@ return;
 
 
 
-if(!mobile.trim()){
-
-alert("Please enter mobile number");
-
-return;
-
-}
-
-
-
-if(mobile.length !== 10){
+if(!mobile.trim() || mobile.length!==10){
 
 alert("Please enter valid 10 digit mobile number");
 
 return;
 
 }
+
 
 
 
@@ -138,10 +132,16 @@ return;
 
 
 
+try{
 
-const formData = new FormData();
+
+setLoading(true);
 
 
+
+
+
+const formData=new FormData();
 
 
 
@@ -157,6 +157,7 @@ formData.append("mobile",mobile);
 
 
 
+
 formData.append(
 
 "message",
@@ -164,40 +165,23 @@ formData.append(
 `
 
 Father Name:
-
 ${father}
 
 
-
 Email:
-
 ${email}
 
 
-
 Address:
-
 ${address}
 
 
-
 Gender:
-
 ${gender}
 
 
-
 Marital Status:
-
 ${marital}
-
-
-
-
-
-Education Details:
-
-
 
 
 
@@ -206,11 +190,8 @@ Education Details:
 ${education.ten ?
 
 `
-
 Board: ${ten.board}
-
 Percentage: ${ten.percentage}
-
 Year: ${ten.year}
 
 `
@@ -223,20 +204,13 @@ Year: ${ten.year}
 
 
 
-
-
-
-
 12th:
 
 ${education.twelve ?
 
 `
-
 Board: ${twelve.board}
-
 Percentage: ${twelve.percentage}
-
 Year: ${twelve.year}
 
 `
@@ -249,22 +223,14 @@ Year: ${twelve.year}
 
 
 
-
-
-
-
 Graduation:
 
 ${education.higher ?
 
 `
-
 Degree: ${higher.degree}
-
 University: ${higher.university}
-
 Percentage: ${higher.percentage}
-
 Year: ${higher.year}
 
 `
@@ -277,21 +243,13 @@ Year: ${higher.year}
 
 
 
-
-
-
-
 Course:
-
 
 ${course ?
 
 `
-
-Course Name: ${courseData.name}
-
+Name: ${courseData.name}
 Institute: ${courseData.institute}
-
 Duration: ${courseData.duration}
 
 `
@@ -305,41 +263,27 @@ Duration: ${courseData.duration}
 
 
 
-
-
 Experience:
-
 
 ${experience}
 
 
 
-
 Experience Details:
-
 
 ${experienceDetails}
 
 
 
-
-
-
 Resume Type:
-
 
 ${resumeType}
 
 
 
-
-
 Old Resume:
 
-
-${oldResume==="yes" ? "Uploaded" : "Create New"}
-
-
+${oldResume==="yes" ? "Uploaded":"Create New"}
 
 `
 
@@ -353,9 +297,7 @@ ${oldResume==="yes" ? "Uploaded" : "Create New"}
 
 if(oldFile){
 
-
 formData.append("file",oldFile);
-
 
 }
 
@@ -365,14 +307,11 @@ formData.append("file",oldFile);
 
 
 
-const res = await fetch("/api/resume",{
-
+const res=await fetch("/api/resume",{
 
 method:"POST",
 
-
 body:formData
-
 
 });
 
@@ -381,7 +320,8 @@ body:formData
 
 
 
-const result = await res.json();
+const result=await res.json();
+
 
 
 
@@ -393,19 +333,67 @@ if(result.success){
 alert("Resume Request Submitted Successfully");
 
 
+
+setName("");
+setFather("");
+setMobile("");
+setEmail("");
+setAddress("");
+setGender("");
+setMarital("");
+
+setOldResume("no");
+
+setOldFile(null);
+
+setExperience("Fresher");
+
+setExperienceDetails("");
+
+setResumeType("Normal Resume");
+
+
 }
+
 
 else{
 
 
-alert("Something went wrong");
+alert(result.message || "Something went wrong");
 
 
 }
 
 
 
+}
+
+catch(error){
+
+
+console.log(error);
+
+
+alert("Server error. Please try again");
+
+
+}
+
+
+finally{
+
+
+setLoading(false);
+
+
+}
+
+
+
+
 };
+
+
 
 
 
@@ -440,6 +428,9 @@ Create professional resumes with complete details
 
 
 
+
+
+
 <form
 
 onSubmit={handleSubmit}
@@ -449,11 +440,6 @@ className="mt-10 grid gap-5 bg-white/5 border border-cyan-500/20 p-8 rounded-2xl
 >
 
 
-<h3 className="text-xl text-cyan-400 font-bold">
-
-Personal Details
-
-</h3>
 
 
 
@@ -467,7 +453,11 @@ className="p-3 bg-black border rounded"
 
 placeholder="Full Name"
 
+required
+
 />
+
+
 
 
 
@@ -485,6 +475,9 @@ placeholder="Father's Name"
 
 
 
+
+
+
 <input
 
 type="tel"
@@ -493,19 +486,15 @@ value={mobile}
 
 maxLength={10}
 
-onChange={(e)=>{
-
-const value=e.target.value.replace(/\D/g,"");
-
-setMobile(value);
-
-}}
+onChange={(e)=>setMobile(e.target.value.replace(/\D/g,""))}
 
 className="p-3 bg-black border rounded"
 
-placeholder="Mobile Number (10 digits)"
+placeholder="Mobile Number"
 
 />
+
+
 
 
 
@@ -523,7 +512,10 @@ placeholder="Email"
 
 
 
-<input
+
+
+
+<textarea
 
 value={address}
 
@@ -534,438 +526,6 @@ className="p-3 bg-black border rounded"
 placeholder="Address"
 
 />
-
-
-
-<select
-
-value={gender}
-
-onChange={(e)=>setGender(e.target.value)}
-
-className="p-3 bg-black border rounded"
-
->
-
-<option>Select Gender</option>
-<option>Male</option>
-<option>Female</option>
-<option>Other</option>
-
-</select>
-
-
-<select
-
-value={marital}
-
-onChange={(e)=>setMarital(e.target.value)}
-
-className="p-3 bg-black border rounded"
-
->
-
-<option>Marital Status</option>
-<option>Single</option>
-<option>Married</option>
-
-</select>
-<h3 className="text-xl text-cyan-400 font-bold mt-5">
-
-Education Details
-
-</h3>
-
-
-
-<label>
-
-<input
-
-type="checkbox"
-
-onChange={(e)=>setEducation({...education,ten:e.target.checked})}
-
-/>
-
-Class 10
-
-</label>
-
-
-
-{
-
-education.ten &&
-
-
-<div className="grid gap-3">
-
-
-<input
-
-placeholder="10th Board"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setTen({...ten,board:e.target.value})}
-
-/>
-
-
-
-<input
-
-placeholder="10th Percentage"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setTen({...ten,percentage:e.target.value})}
-
-/>
-
-
-
-<input
-
-placeholder="10th Completion Year"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setTen({...ten,year:e.target.value})}
-
-/>
-
-
-</div>
-
-
-}
-
-
-
-
-
-
-
-<label>
-
-
-<input
-
-type="checkbox"
-
-onChange={(e)=>setEducation({...education,twelve:e.target.checked})}
-
-/>
-
-
-Class 12
-
-
-</label>
-
-
-
-
-
-
-{
-
-education.twelve &&
-
-
-<div className="grid gap-3">
-
-
-<input
-
-placeholder="12th Board"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setTwelve({...twelve,board:e.target.value})}
-
-/>
-
-
-
-<input
-
-placeholder="12th Percentage"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setTwelve({...twelve,percentage:e.target.value})}
-
-/>
-
-
-
-<input
-
-placeholder="12th Completion Year"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setTwelve({...twelve,year:e.target.value})}
-
-/>
-
-
-
-</div>
-
-
-}
-
-
-
-
-
-
-
-<label>
-
-
-<input
-
-type="checkbox"
-
-onChange={(e)=>setEducation({...education,higher:e.target.checked})}
-
-/>
-
-
-Graduation / Other Qualification
-
-
-</label>
-
-
-
-
-
-
-{
-
-education.higher &&
-
-
-<div className="grid gap-3">
-
-
-<input
-
-placeholder="Degree / Course"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setHigher({...higher,degree:e.target.value})}
-
-/>
-
-
-
-<input
-
-placeholder="University"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setHigher({...higher,university:e.target.value})}
-
-/>
-
-
-
-<input
-
-placeholder="Percentage"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setHigher({...higher,percentage:e.target.value})}
-
-/>
-
-
-
-<input
-
-placeholder="Completion Year"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setHigher({...higher,year:e.target.value})}
-
-/>
-
-
-
-</div>
-
-
-}
-
-
-
-
-
-
-
-
-<h3 className="text-xl text-cyan-400 font-bold mt-5">
-
-Additional Course
-
-</h3>
-
-
-
-
-
-<label>
-
-
-<input
-
-type="checkbox"
-
-checked={course}
-
-onChange={(e)=>setCourse(e.target.checked)}
-
-/>
-
-
-Computer Course / Certification
-
-
-</label>
-
-
-
-
-
-
-
-{
-
-course &&
-
-
-<div className="grid gap-3">
-
-
-<input
-
-placeholder="Course Name"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setCourseData({...courseData,name:e.target.value})}
-
-/>
-
-
-
-<input
-
-placeholder="Institute Name"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setCourseData({...courseData,institute:e.target.value})}
-
-/>
-
-
-
-<input
-
-placeholder="Duration"
-
-className="p-3 bg-black border rounded"
-
-onChange={(e)=>setCourseData({...courseData,duration:e.target.value})}
-
-/>
-
-
-
-</div>
-
-
-}
-
-
-
-
-
-
-
-
-<h3 className="text-xl text-cyan-400 font-bold mt-5">
-
-Experience
-
-</h3>
-
-
-
-
-
-
-
-<select
-
-value={experience}
-
-onChange={(e)=>setExperience(e.target.value)}
-
-className="p-3 bg-black border rounded"
-
->
-
-
-<option>Fresher</option>
-
-<option>Experienced</option>
-
-
-</select>
-
-
-
-
-
-
-
-<textarea
-
-value={experienceDetails}
-
-onChange={(e)=>setExperienceDetails(e.target.value)}
-
-className="p-3 bg-black border rounded"
-
-placeholder="Experience Details"
-
-/>
-
-
-
-
-
-
-
-
-<h3 className="text-xl text-cyan-400 font-bold mt-5">
-
-Resume Type
-
-</h3>
 
 
 
@@ -982,7 +542,6 @@ className="p-3 bg-black border rounded"
 
 >
 
-
 <option>Normal Resume</option>
 
 <option>Professional Resume</option>
@@ -991,23 +550,7 @@ className="p-3 bg-black border rounded"
 
 <option>Job Specific Resume</option>
 
-
 </select>
-
-
-
-
-
-
-
-
-<h3 className="text-xl text-cyan-400 font-bold mt-5">
-
-Old Resume
-
-</h3>
-
-
 
 
 
@@ -1016,20 +559,19 @@ Old Resume
 
 <select
 
+value={oldResume}
+
 onChange={(e)=>setOldResume(e.target.value)}
 
 className="p-3 bg-black border rounded"
 
 >
 
-
 <option value="no">
 
 No, Create New Resume
 
 </option>
-
-
 
 <option value="yes">
 
@@ -1045,17 +587,11 @@ Yes, I have old resume
 
 
 
-
-
 {
 
 oldResume==="yes" &&
 
-
-<label className="border border-dashed p-4 flex flex-col gap-3 cursor-pointer rounded-lg">
-
-
-<div className="flex gap-3 items-center">
+<label className="border border-dashed p-4 rounded cursor-pointer flex gap-3 items-center">
 
 
 <Upload/>
@@ -1063,56 +599,28 @@ oldResume==="yes" &&
 
 <span>
 
-
 {oldFile ? oldFile.name : "Upload Old Resume"}
-
 
 </span>
 
 
-</div>
-
-
-
-
-
 <input
-
 
 type="file"
 
-
-accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-
-
-className="block"
-
+className="hidden"
 
 onChange={(e)=>setOldFile(e.target.files?.[0] || null)}
 
+accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
 
 />
 
 
-
 </label>
-
 
 }
 
-
-
-
-
-
-
-<p className="text-gray-400 text-sm">
-
-
-* Name and Mobile Number are required
-
-
-</p>
 
 
 
@@ -1124,13 +632,27 @@ onChange={(e)=>setOldFile(e.target.files?.[0] || null)}
 
 type="submit"
 
-className="bg-cyan-500 text-black font-bold py-3 rounded-xl mt-5"
+disabled={loading}
 
+className="bg-cyan-500 text-black font-bold py-3 rounded-xl disabled:opacity-50"
 
 >
 
 
-Submit Resume Request
+{
+
+loading
+
+?
+
+"Submitting..."
+
+:
+
+"Submit Resume Request"
+
+}
+
 
 
 </button>
@@ -1150,7 +672,6 @@ Submit Resume Request
 
 
 )
-
 
 
 }

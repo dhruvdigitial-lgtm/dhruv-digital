@@ -4,39 +4,41 @@ import { useState } from "react";
 import Link from "next/link";
 
 
-const resumeTypes=[
 
-"Professional Resume",
-"Fresher Resume",
-"Modern Resume",
-"Creative Resume",
-"Student Resume"
+const resumeTypes = [
+
+  "Professional Resume",
+  "Fresher Resume",
+  "Modern Resume",
+  "Creative Resume",
+  "Student Resume"
 
 ];
+
+
 
 
 
 export default function ResumeTemplates(){
 
 
-const [selected,setSelected]=useState("Professional Resume");
+const [selected,setSelected] = useState("Professional Resume");
 
 
 
-const templates=Array.from({length:20},(_,i)=>({
+
+
+const templates = Array.from({length:20},(_,i)=>({
+
 
 code:
 
-`RES-${selected
-.split(" ")
-[0]
-.toUpperCase()}-${String(i+1).padStart(3,"0")}`,
+`RES-${selected.split(" ")[0].toUpperCase()}-${String(i+1).padStart(3,"0")}`
 
-image:
-
-`/templates/resume/${String(i+1).padStart(3,"0")}.png`
 
 }));
+
+
 
 
 
@@ -50,6 +52,8 @@ return(
 
 
 
+
+
 <div className="flex flex-col md:flex-row">
 
 
@@ -58,7 +62,7 @@ return(
 
 
 
-<aside className="w-full md:w-72 bg-gray-950 border-r border-gray-800 p-6 min-h-screen">
+<aside className="w-full md:w-72 bg-gray-950 border-r border-gray-800 p-6 md:min-h-screen">
 
 
 
@@ -66,9 +70,9 @@ return(
 
 <Link
 
-href="/#templates"
+href="/templates"
 
-className="inline-block border border-cyan-500 px-5 py-2 rounded-xl"
+className="inline-block border border-cyan-500 px-5 py-2 rounded-xl hover:bg-cyan-500 hover:text-black transition"
 
 >
 
@@ -94,8 +98,9 @@ Resume Categories
 
 
 
-
 <div className="space-y-3">
+
+
 
 
 
@@ -104,24 +109,36 @@ Resume Categories
 resumeTypes.map((type)=>(
 
 
+
 <button
 
 
 key={type}
 
 
+type="button"
+
+
+
 onClick={()=>setSelected(type)}
+
 
 
 className={`w-full text-left p-4 rounded-xl transition
 
+
 ${selected===type
 
-? "bg-cyan-500 text-black"
+?
 
-: "bg-gray-900"
+"bg-cyan-500 text-black font-bold"
+
+:
+
+"bg-gray-900 hover:bg-gray-800"
 
 }
+
 
 `}
 
@@ -135,10 +152,12 @@ ${selected===type
 </button>
 
 
+
 ))
 
 
 }
+
 
 
 
@@ -149,7 +168,9 @@ ${selected===type
 
 
 
+
 </aside>
+
 
 
 
@@ -177,7 +198,7 @@ ${selected===type
 
 <p className="text-gray-400 mt-3">
 
-Choose your resume design template
+Choose your preferred resume design template
 
 </p>
 
@@ -196,16 +217,23 @@ Choose your resume design template
 
 
 
+
 {
 
 templates.map((item)=>(
 
 
+
+
+
 <div
+
 
 key={item.code}
 
-className="bg-gray-900 border border-gray-800 rounded-2xl p-4"
+
+className="bg-gray-900 border border-gray-800 rounded-2xl p-4 hover:border-cyan-400 transition"
+
 
 >
 
@@ -215,47 +243,38 @@ className="bg-gray-900 border border-gray-800 rounded-2xl p-4"
 
 
 
-<div className="h-64 bg-white rounded-xl overflow-hidden relative">
+<div className="h-64 bg-white rounded-xl flex items-center justify-center relative overflow-hidden">
 
 
 
 
 
-<img
+<div className="text-center text-gray-400">
 
-src={item.image}
 
-alt={item.code}
+<p className="font-bold text-black">
 
-className="w-full h-full object-cover"
+Resume Preview
 
-/>
-
+</p>
 
 
 
-
-
-<div className="absolute inset-0 flex items-center justify-center">
-
-
-<span className="rotate-[-25deg] text-gray-300 font-bold text-center opacity-70">
-
+<p className="mt-3 text-sm rotate-[-25deg] opacity-60">
 
 Dhruv Digital & Stationary
 
-
-</span>
-
-
-</div>
-
-
+</p>
 
 
 
 </div>
 
+
+
+
+
+</div>
 
 
 
@@ -275,17 +294,29 @@ Dhruv Digital & Stationary
 
 
 
+
+
 <a
 
-href={`https://wa.me/919485665412?text=I want ${item.code}`}
+
+href={`https://wa.me/919485665412?text=I want ${item.code} Resume Template`}
+
 
 target="_blank"
 
+
+rel="noopener noreferrer"
+
+
+
 className="inline-block mt-4 bg-green-600 px-5 py-2 rounded-xl"
+
 
 >
 
+
 Order Now
+
 
 </a>
 
@@ -299,7 +330,10 @@ Order Now
 
 
 
+
+
 ))
+
 
 
 }
@@ -308,8 +342,9 @@ Order Now
 
 
 
-
 </div>
+
+
 
 
 
@@ -321,13 +356,20 @@ Order Now
 
 
 
+
+
 </div>
+
+
+
+
 
 
 </main>
 
 
 )
+
 
 
 }
